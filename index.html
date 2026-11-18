@@ -1,0 +1,496 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Swara – a reading voice for blind and low-vision people</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to main content</a>
+<header>
+  <div class="bar">
+    <a class="logo" href="#home" aria-label="Swara home">
+      <svg class="mark" viewBox="0 0 96 96" aria-hidden="true">
+        <rect width="96" height="96" rx="26" fill="var(--ac)"></rect>
+        <path d="M66 28 C66 14 28 14 28 36 C28 56 68 44 68 64 C68 84 28 82 28 68" fill="none" stroke="var(--on)" stroke-width="8" stroke-linecap="round"></path>
+        <circle cx="68" cy="28" r="5" fill="var(--on)"></circle>
+      </svg>
+      <span class="si" lang="si" aria-hidden="true">ස්වර</span>
+      <span class="sep" aria-hidden="true"></span>
+      <span class="en">Swara</span>
+    </a>
+    <div class="tools" role="group" aria-label="Display settings">
+      <button id="theme" aria-pressed="false">Theme: Swara dark</button>
+      <button id="big" aria-label="Increase text size">A+</button>
+      <button id="small" aria-label="Decrease text size">A−</button>
+    </div>
+    <button class="menu" id="menu" aria-expanded="false" aria-controls="nav">Menu</button>
+    <nav id="nav" aria-label="Main">
+      <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#how">How it works</a></li>
+        <li><a href="#products">Products</a></li>
+        <li><a href="#access">Accessibility</a></li>
+        <li><a href="#people">Who it’s for</a></li>
+        <li><a href="#evidence">Evidence</a></li>
+        <li class="join"><a href="#join">Get involved</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+<main id="main" tabindex="-1">
+
+<section class="page" id="p-home" aria-labelledby="h-home">
+<div class="hero">
+<div>
+<p class="tag">Sinhala · English · Voice-first</p>
+<h1 id="h-home" tabindex="-1">Put the page down. <br>Swara reads it to you.</h1>
+<p class="lede">Swara (ස්වර, “voice”) is an AI reading and seeing assistant for blind and low-vision people. Slide a page into the corner, press one big button, and listen, in Sinhala or English, without lining up a camera or touching a screen.</p>
+<p><a class="btn p" href="#how">See how it works</a> <a class="btn" href="#join">Join our testing</a></p>
+</div>
+<div class="rig" id="rig" role="group" aria-label="Demonstration: Swara reading a medicine label aloud">
+  <div class="head" aria-hidden="true">
+    <i></i>
+    <b></b>
+  </div>
+  <div class="beam" aria-hidden="true"></div>
+  <div class="base">
+    <div class="paper">
+      <div class="scan" aria-hidden="true"></div>
+      <small>Pharmacy label</small>
+      <p class="sentence" id="sentence">
+        <span class="w">Take</span>
+        <span class="w">one</span>
+        <span class="w">tablet</span>
+        <span class="w">every</span>
+        <span class="w">eight</span>
+        <span class="w">hours</span>
+        <span class="w">with</span>
+        <span class="w">food.</span>
+      </p>
+    </div>
+    <div class="brand" aria-hidden="true">
+      <span class="dots"></span>
+      <span class="name">SWARA</span>
+      <span class="dots"></span>
+    </div>
+  </div>
+  <div class="controls">
+    <button type="button" class="p" id="listen">Listen to this label</button>
+    <button type="button" id="pause" aria-pressed="false">Pause demo</button>
+  </div>
+  <p class="rignote" id="note" aria-live="polite"></p>
+</div>
+</div>
+
+<h2>The hard part is not reading. It’s the photo.</h2>
+<div class="grid">
+<div class="card"><div class="stat">9 of 12</div><p>blind or low-vision participants in one study found framing a page for a camera challenging (arXiv 2408.03303).</p></div>
+<div class="card"><div class="stat">US$358–2,499</div><p>typical cost found in our research for portable reading cameras, PC-based OCR systems and smart glasses (to be re-checked).</p></div>
+<div class="card"><div class="stat">1 core</div><p>one reading engine and voice assistant shared by a tabletop station, a laptop reader and an Android phone app.</p></div>
+</div>
+
+<h2>Hear it for yourself</h2>
+<div class="demo">
+<p>A sample of the reading view: the current word is highlighted as it is spoken. Text size and colours follow the theme you choose above.</p>
+<p id="sent" aria-live="off"></p>
+<button class="p" id="play">▶ Play sample (uses your device’s voice)</button>
+<button id="stop">■ Stop</button>
+<p id="demonote" style="font-size:.9rem;color:var(--mu)"></p>
+</div>
+
+<h2>What Swara does</h2>
+<div class="grid">
+<div class="card"><h3>Read</h3><p>Textbooks, letters, bills and labels read aloud exactly as printed, with the original text always available.</p></div>
+<div class="card"><h3>Ask</h3><p>Ask “When is it due?” and get a spoken answer drawn from the page, plus summaries of pages or chapters.</p></div>
+<div class="card"><h3>Find</h3><p>On the phone: say “find my bottle”, sweep the room, and follow beeps and spoken directions.</p></div>
+<div class="card"><h3>Translate</h3><p>Optional, announced Sinhala–English translation. The original text is never hidden.</p></div>
+</div>
+
+<div class="note"><strong>Honest status:</strong> Swara is a student project (group CS-01, IIT / University of Westminster) in active development. Everything on this site describes what we are building and testing, not finished or clinically validated features.</div>
+</section>
+
+<section class="page" id="p-how" aria-labelledby="h-how">
+<h1 id="h-how" tabindex="-1">How Swara works</h1>
+<p class="lede">Every step is designed so a person who cannot see the screen, the page edge or the camera can still succeed on the first try.</p>
+<h2>The station, step by step</h2>
+<ol class="steps">
+<li><strong>Slide the page into the corner.</strong> A plate with a corner stop means the page lands in the same place every time. Touch is the guide, not sight.</li>
+<li><strong>Press the big button.</strong> One large, convex, tactile start button. A separate, smaller button handles shutdown so the two are never confused.</li>
+<li><strong>The camera checks the page.</strong> An overhead autofocus camera under a steady LED light checks blur, glare and cropping, and speaks short hints such as “too dark”.</li>
+<li><strong>Swara reads it aloud.</strong> The text is recognised, put into reading order and spoken in Sinhala or English.</li>
+<li><strong>Turn the page, reading continues.</strong> Page-turn detection continues the chapter without pressing anything again.</li>
+<li><strong>Ask or summarise by voice.</strong> “Repeat that”, “slower”, “summarise this page”. No touching needed.</li>
+</ol>
+<h2>Behind the scenes</h2>
+<p class="lede">Camera image → page detection and perspective correction → lighting and blur checks → script detection and OCR → reading order → original text → optional translation → speech → source-grounded questions.</p>
+<div class="grid">
+<div class="card"><h3>Exact text first</h3><p>We keep the raw OCR output next to any corrected text, especially for dates, bills and medicine labels.</p></div>
+<div class="card"><h3>Answers tied to the page</h3><p>Questions are answered from the scanned text, and Swara should say so when it is unsure rather than guess.</p></div>
+<div class="card"><h3>Permission first</h3><p>Swara asks before sending personal pages to cloud services, and exports are limited to schools or authorised organisations.</p></div>
+</div>
+</section>
+
+<section class="page" id="p-products" aria-labelledby="h-products">
+<h1 id="h-products" tabindex="-1">Three products, one voice</h1>
+<p class="lede">Choose the form that fits your day. All three share the same reading core, voice assistant and settings.</p>
+<div class="grid">
+<div class="card"><h3>Swara Station</h3><p class="tag">Standalone</p><p>A box on your table. Corner-stop plate, overhead gooseneck or clamp camera (target 12 MP autofocus), ring LED, speaker and microphone, with a Raspberry Pi inside that boots straight into the reader. No laptop or phone needed.</p></div>
+<div class="card"><h3>Swara Laptop</h3><p class="tag">Plate + laptop</p><p>The same plate and camera plugged into a computer. Large high-contrast text follows the spoken sentence, with chapter reading, page-turn detection, chapter summaries and keyboard or voice control.</p></div>
+<div class="card"><h3>Swara Phone</h3><p class="tag">Android first</p><p>For homes, shops and on the move. Three screens: <strong>Read</strong> (guided framing and automatic capture), <strong>Ask</strong> (voice questions) and <strong>Find</strong> (on-device object finding, no internet needed).</p></div>
+</div>
+<h2>Why camera quality matters</h2>
+<p>On an A4 page, a 1080p webcam gives only about 92 pixels per inch, which is too soft for small print. A 4K camera gives about 185 and a 12 MP camera about 260. That’s why the station targets a 4K or 12 MP autofocus camera.</p>
+<h2>Compared with what already exists</h2>
+<p>Good tools exist, including phone apps that read pages, answer questions and find objects, and dedicated readers with stands. We don’t claim to be first at any of that. Our focus is different:</p>
+<div class="scroll"><table>
+<caption class="sr" style="text-align:left;font-weight:700;padding-bottom:.4rem">What we aim to add</caption>
+<tr><th scope="col">Focus</th><th scope="col">Our hypothesis</th><th scope="col">How we will test it</th></tr>
+<tr><th scope="row">Repeatable capture</th><td>A corner stop and tactile button cut page-framing effort.</td><td>First-attempt success and time to first speech, against phone apps.</td></tr>
+<tr><th scope="row">Sinhala and English</th><td>Reading quality that holds up on local textbooks, bills and labels.</td><td>CER/WER on at least 30 real pages per language.</td></tr>
+<tr><th scope="row">Affordability</th><td>A station built from commodity parts can be locally serviceable.</td><td>Full bill of materials in LKR, including running costs.</td></tr>
+<tr><th scope="row">One workflow</th><td>The same commands and settings on station, laptop and phone.</td><td>Same text, voice settings and saved state across devices.</td></tr>
+</table></div>
+</section>
+
+<section class="page" id="p-access" aria-labelledby="h-access">
+<h1 id="h-access" tabindex="-1">Built for low vision, from the first pixel</h1>
+<p class="lede">Blindness is not one preference. We design for people who are totally blind, people with low vision, people with colour-vision deficiency, and people with more than one difficulty.</p>
+<h2>Try the themes right now</h2>
+<p>Use the <strong>Theme</strong> button at the top of this page to switch between two themes. Your choice is remembered on this device where the browser allows it.</p>
+<div class="grid">
+<div class="card"><h3>Swara dark</h3><p>The brand look: deep midnight blue with a bright cyan accent and strong contrast.</p></div>
+<div class="card"><h3>High contrast: black, yellow, white</h3><p>Pure black background, white text, yellow for emphasis, controls and focus. Built for maximum clarity and glare control.</p></div>
+</div>
+<h2>Design commitments</h2>
+<div class="grid">
+<div class="card"><h3>Contrast</h3><p>We target WCAG 2.2 AA at minimum: 4.5:1 for normal text, 3:1 for large text and controls.</p></div>
+<div class="card"><h3>Never colour alone</h3><p>Status and state are always shown in words, shape or sound as well as colour.</p></div>
+<div class="card"><h3>Resizable text</h3><p>A+ and A− buttons here; the product targets enlargement to 200% with nothing lost.</p></div>
+<div class="card"><h3>Big, labelled controls</h3><p>Touch targets of about 44–48 px, text plus icon on every button, and bold focus outlines.</p></div>
+<div class="card"><h3>Screen-reader friendly</h3><p>Proper headings, labels, roles and focus order for TalkBack, NVDA and other screen readers.</p></div>
+<div class="card"><h3>Feedback that isn’t noisy</h3><p>Short spoken hints, optional earcons and vibration. Every error says what happened and how to fix it.</p></div>
+</div>
+<h2>Physical accessibility</h2>
+<ul>
+<li>A large, convex start button, physically separate from the small shutdown button.</li>
+<li>A corner stop so placement is learned by touch.</li>
+<li>Fixed lighting that doesn’t depend on the room.</li>
+<li>Voice equivalents for Back, Repeat, Pause, Slower and Faster.</li>
+</ul>
+</section>
+
+<section class="page" id="p-people" aria-labelledby="h-people">
+<h1 id="h-people" tabindex="-1">Who Swara is for</h1>
+<p class="lede">Our design starts with three people. They are personas based on our research, not real individuals.</p>
+<div class="grid">
+<div class="card"><h3>Dinithi, 15</h3><p class="tag">Blind student</p><p>Needs to read textbook chapters on her own for school. She wants to place a book, press a button and hear the chapter without waiting for a helper.</p></div>
+<div class="card"><h3>Kamal, 58</h3><p class="tag">Low-vision adult</p><p>Needs to read bills, letters and medicine labels at home. He wants large high-contrast text, a calm voice and exact wording, especially for doses.</p></div>
+<div class="card"><h3>Anusha, 41</h3><p class="tag">Teacher at a school for the blind</p><p>Needs something she can use with students and trust. She cares about accuracy, shared devices and privacy.</p></div>
+</div>
+<h2>More people we design for</h2>
+<p>These extra personas cover the other age groups and vision profiles in our research plan. They are illustrative and will be refined through interviews.</p>
+<div class="grid">
+<div class="card"><h3>Ruwan, 27</h3><p class="tag">Blind graduate, office worker</p><p>Already uses a screen reader and reads Braille. He needs printed contracts and forms in Sinhala and English, and would like exported text that works with his laptop and, later, a Braille display.</p></div>
+<div class="card"><h3>Seelawathie, 72</h3><p class="tag">Retired, low vision</p><p>Macular degeneration makes small print impossible. She wants one big button, a slow clear voice and no menus, and she doesn’t want to learn a phone.</p></div>
+<div class="card"><h3>Nimali, 35</h3><p class="tag">Shop owner, low vision</p><p>Reads supplier invoices, receipts and product packaging between customers. She needs fast reading, correct numbers and currency, and a way to check totals by asking.</p></div>
+<div class="card"><h3>Tharindu, 19</h3><p class="tag">University student, low vision and colour-vision deficiency</p><p>Reads lecture handouts with mixed Sinhala and English. He needs adjustable themes, text that follows the voice, and status never shown by colour alone.</p></div>
+<div class="card"><h3>Mrs. Silva, 49</h3><p class="tag">Parent and carer</p><p>Her blind son does homework at the kitchen table. She wants him to read independently, but also wants to hear what is being read and to trust the answers.</p></div>
+<div class="card"><h3>Mr. Weerasinghe, 63</h3><p class="tag">Deafblind-low hearing, partly sighted</p><p>Needs louder, slower speech, large on-screen text, vibration cues and keyboard control. Shows why we plan haptics and Braille compatibility.</p></div>
+</div>
+<h2>Everyday use</h2>
+<details open><summary>At school</summary><p>Slide in a textbook page, listen, ask “summarise this page”, then turn to the next. Teachers can export text or audio to authorised school systems.</p></details>
+<details><summary>At home</summary><p>Read a bill or letter aloud and ask “How much is due?” Medicine labels are read exactly as printed, and Swara signals uncertainty rather than inventing missing dosage text.</p></details>
+<details><summary>On the move</summary><p>Use the phone app to frame a page with spoken hints, or to find your bottle, cup or door with beeps and directions.</p></details>
+</section>
+
+<section class="page" id="p-evidence" aria-labelledby="h-evidence">
+<h1 id="h-evidence" tabindex="-1">Evidence and honesty</h1>
+<p class="lede">We would rather under-claim and prove it. Here is what we know, what we are building and what we have not yet shown.</p>
+<h2>Where we stand</h2>
+<div class="scroll"><table>
+<tr><th scope="col">Area</th><th scope="col">Status</th></tr>
+<tr><th scope="row">Station, laptop and phone design</th><td><span class="tag">Planned</span> Specified, with a software-first prototype before hardware is ordered.</td></tr>
+<tr><th scope="row">Sinhala OCR and speech accuracy</th><td><span class="tag">Not yet measured</span> Benchmarks on local pages are planned.</td></tr>
+<tr><th scope="row">Usability with blind and low-vision users</th><td><span class="tag">Pending ethics approval</span> Two rounds of at least five users are planned.</td></tr>
+<tr><th scope="row">Cost</th><td><span class="tag">Not yet measured</span> A full LKR bill of materials is planned.</td></tr>
+</table></div>
+<h2>How we will test</h2>
+<div class="grid">
+<div class="card"><h3>Page capture</h3><p>10 A4 pages per participant against popular phone apps, with randomised order.</p></div>
+<div class="card"><h3>OCR accuracy</h3><p>At least 30 real images per language, scored with character and word error rates.</p></div>
+<div class="card"><h3>Answer reliability</h3><p>30 answerable and 15 unanswerable questions, to catch made-up answers.</p></div>
+<div class="card"><h3>Accessible controls</h3><p>Blind and low-vision users start, pause, repeat and recover without visual help.</p></div>
+</div>
+<h2>Known limits</h2>
+<ul>
+<li>No Braille display output in the first version, and no tactile graphics.</li>
+<li>Handwriting is out of scope.</li>
+<li>Several core operations currently use cloud services, so connectivity and privacy trade-offs apply.</li>
+<li>Sri Lankan statistics: a 2014–15 national survey found 1.7% blindness among adults aged 40+. It is not a figure for all Sri Lankans or for today.</li>
+</ul>
+<div class="note">We never use blindfolded sighted testers as a substitute for blind participants.</div>
+</section>
+
+<section class="page" id="p-join" aria-labelledby="h-join">
+<h1 id="h-join" tabindex="-1">Help shape Swara</h1>
+<p class="lede">We are looking for blind and low-vision people, teachers, families and organisations to share how they read today and to test early prototypes, after ethics approval.</p>
+<div class="grid">
+<div class="card"><h3>Test with us</h3><p>Try the prototype and tell us what works. Information sheets will be offered in Sinhala and English.</p></div>
+<div class="card"><h3>Share your experience</h3><p>Short interviews about reading, languages, devices and what frustrates you.</p></div>
+<div class="card"><h3>Partner with us</h3><p>Schools and organisations: help with co-design, supervised testing and feedback.</p></div>
+</div>
+<h2>Register your interest</h2>
+<form id="f" novalidate>
+<label for="n">Your name</label><input id="n" autocomplete="name">
+<label for="e">Email address</label><input id="e" type="email" autocomplete="email">
+<label for="r">I am a</label>
+<select id="r"><option>Blind or low-vision reader</option><option>Teacher or educator</option><option>Family member or carer</option><option>Organisation or supplier</option><option>Other</option></select>
+<label for="l">Preferred language</label>
+<select id="l"><option>Sinhala</option><option>English</option><option>Both</option></select>
+<p><button class="p" type="submit">Register interest</button></p>
+<p id="msg" role="status" aria-live="polite"></p>
+</form>
+<p style="color:var(--mu);font-size:.9rem">This demo form does not send your details anywhere yet. When the project is ready, we will ask for clear consent first.</p>
+<div class="cta"><h3>Questions?</h3><p>Swara is built by group CS-01 for the SDGP module, under supervision. Please contact us through your institution’s project channels.</p></div>
+</section>
+
+<section class="page" id="p-languages" aria-labelledby="h-languages">
+<h1 id="h-languages" tabindex="-1">Sinhala and English, tested properly</h1>
+<p class="lede">A language listed on a product website doesn’t mean it reads well. We treat every language skill as its own test.</p>
+<h2>Five separate checks</h2>
+<div class="grid">
+<div class="card"><h3>1. Reading (OCR)</h3><p>Sinhala fonts, diacritics, numerals and mixed Sinhala-English lines.</p></div>
+<div class="card"><h3>2. Speaking (TTS)</h3><p>Is the voice clear, natural and comfortable over long reading?</p></div>
+<div class="card"><h3>3. Listening</h3><p>Voice commands in Sinhala and English, including accents and noisy rooms.</p></div>
+<div class="card"><h3>4. Translation</h3><p>Optional, announced aloud, with the original text always kept.</p></div>
+<div class="card"><h3>5. Interface language</h3><p>Menus, hints and error messages in the language you choose.</p></div>
+</div>
+<h2>How we will measure</h2>
+<ul>
+<li>At least 30 real photographed pages per language: textbooks, letters, bills and medicine packaging.</li>
+<li>Ground truth typed by people, then scored with character error rate and word error rate, with English, Sinhala and mixed scores kept separate.</li>
+<li>Blind listeners rate the voice for comprehension and comfort.</li>
+<li>We test odd cases on purpose: small print, columns, poor light, currency and dates.</li>
+</ul>
+<div class="note">Earlier Sri Lankan research reports Sinhala Tesseract word accuracy improving from 53% to 86% in its own tests. That is encouraging, but it is not a result we can promise for Swara until we measure it ourselves.</div>
+</section>
+
+<section class="page" id="p-privacy" aria-labelledby="h-privacy">
+<h1 id="h-privacy" tabindex="-1">Privacy, safety and ethics</h1>
+<p class="lede">You will be reading bills, letters and medicine labels. These are personal, and some are safety-critical.</p>
+<div class="grid">
+<div class="card"><h3>Ask before upload</h3><p>Swara asks permission before sending a personal page to a cloud service, and says clearly when it is working offline.</p></div>
+<div class="card"><h3>Controlled export</h3><p>Saved text or audio can only be exported to a school or authorised organisation.</p></div>
+<div class="card"><h3>Read exactly as printed</h3><p>For medicine labels and bills, Swara reads what is printed, flags uncertainty and never invents missing dosage text.</p></div>
+<div class="card"><h3>Original always available</h3><p>Raw OCR output is kept next to any corrected, translated or summarised version.</p></div>
+</div>
+<h2>Research ethics</h2>
+<ul>
+<li>Testing with people starts only after institutional ethics approval.</li>
+<li>Consent is accessible, in Sinhala and English, and minors need parental consent.</li>
+<li>Photographed documents are handled carefully and not kept longer than needed.</li>
+<li>We report participants by what they need, not by assumptions about age.</li>
+<li>We never replace blind participants with blindfolded sighted testers.</li>
+</ul>
+<div class="note">Swara is not a medical device. Always confirm medicine doses with a pharmacist or doctor.</div>
+</section>
+
+<section class="page" id="p-roadmap" aria-labelledby="h-roadmap">
+<h1 id="h-roadmap" tabindex="-1">Roadmap</h1>
+<p class="lede">We are building a working core in about nine weeks, then extending it through the year. We build in software first and order hardware once the design is proven.</p>
+<ol class="steps">
+<li><strong>Week 1: Plan.</strong> Interview protocol, ethics request, competitor checklist and supplier contact sheet.</li>
+<li><strong>Weeks 1–2: Benchmark.</strong> 30 pages per language for OCR, theme prototypes and Sinhala voice listening tests.</li>
+<li><strong>Weeks 3–4: Capture.</strong> Webcam capture pipeline, with 50 controlled attempts to measure first-try framing and delay.</li>
+<li><strong>Weeks 5–6: Voice.</strong> Press-to-talk workflow, an accessible laptop prototype and the phone’s Read, Ask and Find skeleton.</li>
+<li><strong>Weeks 7–8: Integrate.</strong> Backend, page-turn detection and phone object-finding tests.</li>
+<li><strong>Week 9: Review.</strong> Evidence table, demo, limitations and budget estimates.</li>
+</ol>
+<h2>After the core</h2>
+<ul>
+<li>Two rounds of usability testing with at least five blind or low-vision users each.</li>
+<li>Cost comparison of the complete station, including power, housing and running costs.</li>
+<li>Possible future: Braille display support and export.</li>
+</ul>
+<p>Dates are plans and may change.</p>
+</section>
+
+<section class="page" id="p-faq" aria-labelledby="h-faq">
+<h1 id="h-faq" tabindex="-1">Frequently asked questions</h1>
+<details open><summary>Is Swara available to buy?</summary><p>No. It is a student prototype in development. You can register your interest on the Get involved page.</p></details>
+<details><summary>Are you the first to read pages aloud or find objects?</summary><p>No. Several good apps and devices already read documents, answer questions and find objects. We are testing whether a fixed-page station, local Sinhala and English quality, low cost and one shared workflow can serve some people better.</p></details>
+<details><summary>Do I need a phone or laptop for the station?</summary><p>No. The station works standalone with its own speaker and microphone. The laptop and phone versions share the same reading core.</p></details>
+<details><summary>Does it work without internet?</summary><p>Not fully yet. Several core steps currently use cloud services. Object finding on the phone is designed to work on the device, and we will test and report offline behaviour clearly.</p></details>
+<details><summary>Will it read handwriting?</summary><p>No. Handwriting is outside the scope of this project.</p></details>
+<details><summary>Can it replace Braille?</summary><p>No. Braille is a literacy medium in its own right. The first version is speech only. Braille display support is a possible future step, and we will ask Braille users what they need.</p></details>
+<details><summary>Can I change the colours and text size?</summary><p>Yes. This website has a theme button and text size buttons, and the product will offer dark, light and custom themes with enlargement up to 200%.</p></details>
+<details><summary>How accurate is it?</summary><p>We don’t know yet, and we won’t guess. Accuracy for Sinhala and English will be measured on real local pages and reported openly.</p></details>
+<details><summary>Who is building it?</summary><p>Group CS-01, first-year BSc Computer Science students at IIT / University of Westminster, under academic supervision.</p></details>
+<div class="cta"><h3>Still have a question?</h3><p><a class="btn p" href="#join">Get involved</a></p></div>
+</section>
+
+</main>
+<footer>
+<p><strong>Swara</strong> · ස්වර · A student prototype by group CS-01, IIT / University of Westminster.</p>
+<p>Not a medical device. Always confirm medicine doses with a pharmacist or doctor.</p>
+</footer>
+
+<script>
+(function(){
+  var R=document.documentElement,
+      ss=window.speechSynthesis,
+      reduce=window.matchMedia&&matchMedia("(prefers-reduced-motion: reduce)").matches,
+      pages=["home","how","products","access","people","evidence","languages","privacy","roadmap","faq","join"];
+
+  function store(k,v){
+    try{if(v===undefined)return localStorage.getItem(k);localStorage.setItem(k,v)}
+    catch(e){return null}
+  }
+
+  /* theme */
+  var tb=document.getElementById("theme");
+  function setTheme(t){
+    if(t==="hc"){R.setAttribute("data-theme","hc")}else{R.removeAttribute("data-theme")}
+    tb.setAttribute("aria-pressed",t==="hc");
+    tb.textContent=t==="hc"?"Theme: Black, yellow, white":"Theme: Swara dark";
+    tb.setAttribute("aria-label","Switch theme. Currently "+(t==="hc"?"high contrast black, yellow and white":"Swara dark"));
+    store("swara-theme",t);
+  }
+  tb.onclick=function(){setTheme(R.getAttribute("data-theme")==="hc"?"ocean":"hc")};
+  setTheme(store("swara-theme")==="hc"?"hc":"ocean");
+
+  /* text size */
+  var size=parseFloat(store("swara-size"))||1.125;
+  function setSize(s){
+    size=Math.max(.9,Math.min(2,s));
+    R.style.setProperty("--fs",size+"rem");
+    store("swara-size",String(size));
+  }
+  setSize(size);
+  document.getElementById("big").onclick=function(){setSize(size+.125)};
+  document.getElementById("small").onclick=function(){setSize(size-.125)};
+
+  /* page routing */
+  function route(first){
+    var h=(location.hash||"#home").slice(1);
+    if(pages.indexOf(h)<0)h="home";
+    pages.forEach(function(p){document.getElementById("p-"+p).classList.toggle("on",p===h)});
+    document.querySelectorAll("#nav a").forEach(function(a){
+      if(a.getAttribute("href")==="#"+h)a.setAttribute("aria-current","page");
+      else a.removeAttribute("aria-current");
+    });
+    var t=document.getElementById("h-"+h);
+    document.title=(h==="home"?"Swara":t.textContent.replace(/\s+/g," ").trim()+" – Swara");
+    if(!first){window.scrollTo(0,0);t.focus({preventScroll:true})}
+  }
+  window.addEventListener("hashchange",function(){route(false)});
+  route(true);
+
+  /* nav: Menu button and More dropdown */
+  var nv=document.getElementById("nav"),
+      mb=document.getElementById("menu"),
+      mr=document.getElementById("more");
+  function setMenu(o){
+    mb.setAttribute("aria-expanded",String(o));
+    nv.classList.toggle("open",o);
+    mb.textContent=o?"Close":"Menu";
+  }
+  mb.addEventListener("click",function(){
+    setMenu(mb.getAttribute("aria-expanded")!=="true");
+  });
+  document.addEventListener("click",function(e){
+    if(mr.open&&!mr.contains(e.target))mr.open=false;
+    if(e.target.closest&&e.target.closest("#nav a")){mr.open=false;setMenu(false)}
+  });
+  document.addEventListener("keydown",function(e){
+    if(e.key==="Escape"&&mr.open){
+      mr.open=false;
+      mr.querySelector("summary").focus();
+    }
+  });
+
+  /* hero demo: looping word highlight, Listen and Pause */
+  var ws=[].slice.call(document.querySelectorAll("#sentence .w")),
+      lb=document.getElementById("listen"),
+      pb=document.getElementById("pause"),
+      rn=document.getElementById("note"),
+      rtext=ws.map(function(w){return w.textContent}).join(" "),
+      WORD=600,GAP=900,ri=0,rt=null,rp=false;
+  function rclr(){ws.forEach(function(w){w.classList.remove("on")})}
+  function rstep(){
+    if(rp)return;
+    rclr();
+    if(ri>=ws.length){ri=0;rt=setTimeout(rstep,GAP);return}
+    ws[ri++].classList.add("on");
+    rt=setTimeout(rstep,WORD);
+  }
+  function rsetPaused(p){
+    rp=p;
+    pb.setAttribute("aria-pressed",String(p));
+    clearTimeout(rt);
+    if(p){if(ss)ss.pause();rn.textContent="Paused."}
+    else{if(ss)ss.resume();rn.textContent="";rstep()}
+  }
+  lb.onclick=function(){
+    clearTimeout(rt);
+    if(ss)ss.cancel();
+    ri=0;rp=false;
+    pb.setAttribute("aria-pressed","false");
+    if(ss&&window.SpeechSynthesisUtterance){
+      var u=new SpeechSynthesisUtterance(rtext);
+      u.rate=.9;
+      u.onend=function(){rn.textContent=""};
+      ss.speak(u);
+      rn.textContent="Reading aloud…";
+    }else{
+      rn.textContent="Speech isn’t available in this browser, so only the highlight is shown.";
+    }
+    rstep();
+  };
+  pb.onclick=function(){rsetPaused(!rp)};
+  if(reduce){rsetPaused(true)}else{rstep()}
+
+  /* "Hear it for yourself" sample */
+  var text="The bill is due on the fifteenth of March. Please pay at any branch.",
+      box=document.getElementById("sent"),
+      timer=null;
+  box.innerHTML=text.split(" ").map(function(w,i){return '<span data-i="'+i+'">'+w+'</span>'}).join(" ");
+  var spans=box.querySelectorAll("span");
+  function clr(){spans.forEach(function(s){s.classList.remove("hl")})}
+  function stop(){clearInterval(timer);if(ss)ss.cancel();clr()}
+  document.getElementById("stop").onclick=stop;
+  document.getElementById("play").onclick=function(){
+    stop();
+    var i=0,tick=function(){
+      clr();
+      if(i<spans.length){spans[i].classList.add("hl");i++}
+      else{clearInterval(timer);clr()}
+    };
+    if(ss&&window.SpeechSynthesisUtterance){
+      var u=new SpeechSynthesisUtterance(text);
+      u.rate=.9;
+      u.onend=function(){clearInterval(timer);clr()};
+      ss.speak(u);
+    }else{
+      document.getElementById("demonote").textContent="Speech isn’t available in this browser, so only the highlight is shown.";
+    }
+    tick();
+    timer=setInterval(tick,430);
+  };
+  document.getElementById("demonote").textContent="Sinhala voices depend on your device. This sample is in English.";
+
+  /* register form */
+  document.getElementById("f").onsubmit=function(e){
+    e.preventDefault();
+    var n=document.getElementById("n").value.trim(),
+        m=document.getElementById("e").value.trim(),
+        o=document.getElementById("msg");
+    if(!n||!/^\S+@\S+\.\S+$/.test(m)){o.textContent="Please enter your name and a valid email address.";return}
+    o.textContent="Thank you, "+n+". Your interest is noted. This demo does not store or send it.";
+  };
+})();
+</script>
